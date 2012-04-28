@@ -1,3 +1,3 @@
 == Bookshare Search
 
-This is an enhanced search application for books on the Bookshare rpository - Bookshare.org
+This is an enhanced search application for books on the Bookshare repository - http://bookshare.org
