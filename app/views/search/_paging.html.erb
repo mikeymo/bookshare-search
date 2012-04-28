@@ -1,0 +1,21 @@
+<% curr_page = response["book"]["list"]["page"].to_i %>
+<% total_pages = response["book"]["list"]["num_pages"].to_i %>
+<% max_pages = 5 %>
+<% starting_page = curr_page > 2 ? curr_page - 2 : 1 %>
+<% page_count = 0 %>
+
+<% if total_pages > 1 %>
+	<div class="pagination">
+	  <ul>
+	   	<li><a href="#">Prev</a></li>
+	  <% (starting_page .. total_pages).each do |i| %>
+	    <% page_count += 1 %>
+	    <li class='<%= response["book"]["list"]["page"].to_i == i ? "active" : "inactive" %>'>
+	      <a href="#"><%= i %></a>
+	    </li>
+	    <% break if page_count >= max_pages %>
+	  <% end %>
+	 	 <li><a href="#">Next</a></li>
+	  </ul>
+	</div>
+<% end %>

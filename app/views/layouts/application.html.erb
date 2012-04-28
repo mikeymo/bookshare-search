@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookshare Search</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+	<div class="container">
+		<a class="brand" href="#">Bookshare Search</a>
+    <ul class="nav">
+	    <li class="active">
+	    <a href="#">Basic Search</a>
+	    </li>
+	    <li><a href="#">Advanced Search</a></li>
+    </ul>
+	</div>
+	</div>
+</div>
+
+<div class="container" style="padding-top:80px">
+
+<%= yield %>
+
+</div>
+
+</body>
+</html>
