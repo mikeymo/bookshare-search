@@ -17,22 +17,24 @@
 		    </tr>
 		  </thead>-->
 		  <tbody>
-		  	<% @books.each do |book| %>
-		    <tr>
-		      <td><b><%= book["title"] %></b>&nbsp;
-		      	by&nbsp;<a href="#"><%= book["author"] %></a>
-		      	<div style="margin:3px;margin-left:6px"><%= book["brief_synopsis"] %></div>
-		      </td>
-		      <td><%= book["isbn13"] %></td>
-		      <td>
-		      	<% if book["images"] == "1" %>
-		          <span class="label label-success">Images</span><br>
-		      	<% end %>
-		      	<span class="label label-info"><%= number_to_human_size(book["dtbook_size"].to_f) %></span>
-		      </td>
-		    </tr>
-		    
-		    <% end %>
+		  	<% if @books.present? %>
+			  	<% @books.each do |book| %>
+			    <tr>
+			      <td><b><%= book["title"] %></b>&nbsp;
+			      	by&nbsp;<a href="#"><%= book["author"] %></a>
+			      	<div style="margin:3px;margin-left:6px"><%= book["brief_synopsis"] %></div>
+			      </td>
+			      <td><%= book["isbn13"] %></td>
+			      <td>
+			      	<% if book["images"] == "1" %>
+			          <span class="label label-success">Images</span><br>
+			      	<% end %>
+			      	<span class="label label-info"><%= number_to_human_size(book["dtbook_size"].to_f) %></span>
+			      </td>
+			    </tr>
+			    
+			    <% end %>
+			<% end %>
 		  </tbody>
 		</table>
 
@@ -48,17 +50,23 @@
 		  <input name="title" type="text" class="span3" placeholder="Title" value='<%= @search_parameters.title %>'>
 		  <label>Author</label>
 		  <input name="author" type="text" class="span3" placeholder="Author" value='<%= @search_parameters.author %>'>
+		  <label>Full Text</label>
+		  <input name="full_text" type="text" class="span3" placeholder="Full Text" value='<%= @search_parameters.full_text %>'>
+
+<%
+=begin%>
 		  <label>ISBN</label>
 		  <input name="isbn" type="text" class="span3" placeholder="ISBN" value='<%= @search_parameters.isbn %>'>
 		  <label>Publisher</label>
 		  <input name="publisher" type="text" class="span3" placeholder="Publisher" value='<%= @search_parameters.publisher %>'>
+
 		  <label>Synopsis</label>
 		  <input name="synopsis" type="text" class="span3" placeholder="Synopsis" value='<%= @search_parameters.synopsis %>'>
-		  <label>Full Text</label>
-		  <input name="full_text" type="text" class="span3" placeholder="Full Text" value='<%= @search_parameters.full_text %>'>
+		  
 		  
 		  <label>Books to Search</label>
 		  <%= select_tag :books_to_search, options_for_select(SearchOptions::BOOKS_TO_SEARCH, @search_parameters.books_to_search) %>
+
 		  
 		  <label>Quality</label>
 		  <label class="checkbox span3">
@@ -80,7 +88,8 @@
 
 		 	<label>Language</label>
 		 	 <%= select_tag :language, options_for_select(SearchOptions::LANGUAGES, @search_parameters.language) %>
-		 	
+<%
+=end %>		 	
          
          	<label>Grade</label>
          	<%= select_tag :grade, options_for_select(SearchOptions::GRADES, @search_parameters.grade) %>

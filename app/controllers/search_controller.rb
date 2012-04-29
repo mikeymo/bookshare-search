@@ -10,7 +10,7 @@ class SearchController < ApplicationController
   	@search_parameters.qualities_2 = params[:search_parameters][:qualities_2] if params[:search_parameters].present?
   	@search_parameters.qualities_3 = params[:search_parameters][:qualities_3] if params[:search_parameters].present?
 
-  	response = BookshareAPI.new.by_keyword
+  	response = BookshareAPI.new.advanced_search(@search_parameters)
 
   	
 
